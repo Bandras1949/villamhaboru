@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VILLÁMHÁBORÚ · Bánky András</title>
+<meta name="description" content="Örkényszerű kétperces novella a villámháborúról, amely sosem ér véget.">
+<script>document.documentElement.classList.add('js');</script>
+<meta property="og:type" content="book">
+<meta property="og:title" content="VILLÁMHÁBORÚ — Bánky András">
+<meta property="og:description" content="Örkényszerű kétperces novella a villámháborúról, amely sosem ér véget.">
+<meta property="og:locale" content="hu_HU">
+<meta property="og:url" content="https://bandras1949.github.io/villamhaboru/">
+<meta property="og:image" content="https://bandras1949.github.io/villamhaboru/borito.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4efe6;--page-bg:#faf6ef;--text:#2c1f14;--accent:#7b3416;--muted:#8a7060;--border:#d4c4a8;--header-bg:#2c1f14;--header-text:#f4efe6;}
+body.dark{--bg:#18120c;--page-bg:#1e160f;--text:#e8ddd0;--accent:#c8763a;--muted:#9a8878;--border:#3a2a1e;--header-bg:#0e0a06;--header-text:#e8ddd0;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Cormorant Garamond',Georgia,serif;min-height:100vh;display:flex;flex-direction:column;}
+header{background:var(--header-bg);color:var(--header-text);padding:14px 40px;display:flex;align-items:baseline;gap:20px;border-bottom:2px solid var(--accent);position:sticky;top:0;z-index:100;}
+.header-band{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;opacity:.55;}
+.header-title{font-family:'Cinzel',serif;font-size:clamp(16px,2vw,22px);font-weight:700;letter-spacing:2px;}
+#theme-btn{position:fixed;top:10px;right:18px;background:transparent;border:1px solid rgba(255,255,255,.25);color:var(--header-text);font-size:15px;cursor:pointer;padding:5px 11px;border-radius:3px;z-index:200;}
+#theme-btn:hover{opacity:.65;}
+main{flex:1;display:flex;flex-direction:column;align-items:center;padding:30px 20px 20px;}
+.page{width:100%;max-width:680px;background:var(--page-bg);border:1px solid var(--border);border-radius:3px;box-shadow:0 3px 20px rgba(0,0,0,.08);padding:clamp(28px,4vw,60px) clamp(26px,5vw,72px) 44px;min-height:calc(100vh - 200px);display:flex;flex-direction:column;justify-content:flex-start;position:relative;margin-bottom:18px;}
+html.js .page{display:none;margin-bottom:0;}
+html.js .page.active{display:flex;}
+html:not(.js) .reader-nav,html:not(.js) #theme-btn{display:none;}
+.page-body p{font-size:clamp(16.5px,1.85vw,19.5px);line-height:1.88;margin-bottom:1em;font-weight:300;color:var(--text);}
+.page-body p.first::first-letter{color:var(--accent);font-weight:500;font-size:1.15em;}
+.page-body p.dialogue{font-style:italic;color:var(--accent);padding-left:1.1em;border-left:2px solid var(--border);margin-left:6px;}
+.sep{text-align:center;color:var(--muted);letter-spacing:.6em;margin:1.6em 0;font-size:15px;}
+.chapter-title-page{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 300px);text-align:center;gap:22px;}
+.chapter-number{font-family:'Cinzel',serif;font-size:12px;letter-spacing:5px;color:var(--muted);text-transform:uppercase;}
+.chapter-title-big{font-family:'Cinzel',serif;font-size:clamp(24px,3.5vw,42px);color:var(--accent);font-weight:600;line-height:1.3;}
+.page-num{position:absolute;bottom:16px;right:28px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:var(--muted);}
+nav.reader-nav{width:100%;max-width:680px;display:flex;align-items:center;justify-content:space-between;padding:16px 0 10px;}
+.nav-btn{font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;background:var(--header-bg);color:var(--header-text);border:none;padding:11px 24px;cursor:pointer;border-radius:2px;transition:opacity .2s;}
+.nav-btn:hover:not(:disabled){opacity:.72;}
+.nav-btn:disabled{opacity:.2;cursor:default;}
+.nav-counter{font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:var(--muted);display:flex;align-items:center;gap:10px;}
+.page-jump{font-family:'Cinzel',serif;font-size:12px;width:52px;text-align:center;background:transparent;border:1px solid var(--border);color:var(--text);padding:6px;border-radius:2px;}
+footer{text-align:center;padding:12px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;color:var(--muted);border-top:1px solid var(--border);}
+@media(max-width:560px){
+  header{padding:12px 14px;}
+  .page{padding:24px 18px 44px;}
+  nav.reader-nav{position:sticky;bottom:0;background:var(--bg);border-top:1px solid var(--border);margin-top:6px;padding:10px 0 12px;z-index:90;}
+  .nav-btn{padding:13px 20px;font-size:12px;}
+  .nav-counter{font-size:11px;letter-spacing:2px;}
+}
+
+.page-body p.naplo{line-height:1.65;margin-bottom:1.3em;white-space:pre-line;}
+.page-body p.tight{margin-bottom:0 !important;line-height:1.6;}
+.page-body p.sp-after{margin-bottom:1.3em !important;}
+.page-body p.sp-after-md{margin-bottom:1em;}
+.page-body p.author-line{font-family:'Cinzel',serif;font-size:clamp(13px,1.5vw,16px);letter-spacing:3px;text-align:right;color:var(--muted);margin-top:2em;margin-bottom:0;}
+</style>
+</head>
+<body>
+<header><span class="header-band">Bánky András · Kétperces novella</span><span class="header-title">VILLÁMHÁBORÚ</span></header>
+<button id="theme-btn" onclick="document.body.classList.toggle('dark')" aria-label="Téma váltása">☾</button>
+<main id="main">
+<div class="page" id="page-0"><div class="page-body">
+<p class="first naplo">Első nap: „Minden a terveink szerint alakul."
+Tizenkettedik nap: „Jól állunk."
+Huszonharmadik nap: „Közel a vége."
+Harmincnegyedik nap: „Katonáink hamarosan otthon lesznek."
+Negyvenötödik nap: „Ma este a civilizáció elpusztul."
+Negyvenhatodik nap: „Teljes és tökéletes győzelem."
+Ötvenhatodik nap: „Nagyszerűen haladunk."
+Hatvanhetedik nap: „Ketyeg az óra."</p>
+<p class="sp-after-md">Ma van a kilencvenkilencedik nap. Egy híján 100.</p>
+<p class="tight">A rakéták, amelyeket megsemmisítettünk, tegnap becsapódtak.</p>
+<p class="tight">A föld, amelyet felszabadítottunk, nem minket akar.</p>
+<p class="tight">A rezsim, amely megbukott, hivatalban van.</p>
+<p class="sp-after">Az urán, amely elfogyott, dúsabb, mint valaha.</p>
+<p class="sp-after">A győzelem kétszázmilliárd dollárba került.</p>
+<p class="tight">Gyerekre nincs pénz.</p>
+<p class="tight">Rákkutatásra nincs pénz.</p>
+<p class="tight">Az öregek gyógyszerére nincs pénz.</p>
+<p class="tight sp-after">Csak a győzelemre van pénz.</p>
+<p class="tight">Az Elnök széttárja a karját: „Ennél többet nem engedhetünk meg magunknak."</p>
+<p class="sp-after">A Hadügyminiszter a támadás előtti héten fegyvergyári részvényeket vásárolt.</p>
+<p class="sp-after-md">Minden a terveink szerint alakult.</p>
+
+</div><div class="page-num">1 / 1</div></div>
+  
+  <nav class="reader-nav">
+    <button class="nav-btn" id="prev-btn" onclick="navigate(-1)" disabled>← Előző</button>
+    <span class="nav-counter"><span id="counter">1 / 1</span>
+      <input class="page-jump" id="jump-input" type="number" min="1" max="1" value="1" title="Ugrás oldalra" onchange="jumpTo(this.value)" /></span>
+    <button class="nav-btn" id="next-btn" onclick="navigate(1)">Következő →</button>
+  </nav>
+</main>
+<footer>VILLÁMHÁBORÚ</footer>
+<script>
+let current=0;const total=1;
+function navigate(d){goTo(current+d);}
+function goTo(n){n=Math.max(0,Math.min(total-1,parseInt(n)));
+ var a=document.querySelector('.page.active'); if(a)a.classList.remove('active');
+ document.getElementById('page-'+n).classList.add('active'); current=n;
+ document.getElementById('counter').textContent=(current+1)+' / '+total;
+ document.getElementById('jump-input').value=current+1;
+ document.getElementById('prev-btn').disabled=current===0;
+ document.getElementById('next-btn').disabled=current===total-1;
+ window.scrollTo({top:0,behavior:'smooth'});}
+function jumpTo(v){const n=parseInt(v)-1;if(!isNaN(n))goTo(n);}
+document.addEventListener('keydown',function(e){if(e.target.tagName==='INPUT')return;
+ if(e.key==='ArrowLeft'||e.key==='PageUp')navigate(-1);
+ if(e.key==='ArrowRight'||e.key==='PageDown')navigate(1);});
+let tsx=0,tsy=0;
+document.addEventListener('touchstart',function(e){tsx=e.changedTouches[0].clientX;tsy=e.changedTouches[0].clientY;},{passive:true});
+document.addEventListener('touchend',function(e){
+ if(e.target.closest && e.target.closest('a,button,input')) return;
+ var dx=e.changedTouches[0].clientX-tsx, dy=e.changedTouches[0].clientY-tsy;
+ if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)*1.8){ if(dx<0)navigate(1); else navigate(-1); }
+},{passive:true});
+goTo(0);
+</script>
+</body>
+</html>
